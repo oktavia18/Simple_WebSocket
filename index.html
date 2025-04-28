@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WebSocket Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+    #chat-box {
+      width: 90%;
+      max-width: 600px;
+      height: 70vh;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .message {
+      margin: 5px 0;
+      padding: 10px 15px;
+      border-radius: 20px;
+      max-width: 70%;
+      word-wrap: break-word;
+      animation: slideIn 0.3s ease forwards;
+    }
+    .server {
+      align-self: flex-start;
+      background: #c8e6c9;
+      color: #2e7d32;
+    }
+    .system {
+      align-self: flex-end;
+      background: #bbdefb;
+      color: #0d47a1;
+    }
+    #input-area {
+      width: 90%;
+      max-width: 600px;
+      margin-top: 10px;
+      display: flex;
+    }
+    #textInput {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+    #sendBtn {
+      padding: 10px 20px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      cursor: pointer;
+    }
+    #sendBtn:hover {
+      background-color: #004d40;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>WebSocket ChatServer</h1>
+  <div id="chat-box"></div>
+
+  <div id="input-area">
+    <input type="text" id="textInput" placeholder="Ketik pesan...">
+    <button id="sendBtn">Kirim</button>
+  </div>
+
+  <script>
+    const socket = new WebSocket('ws://localhost:8080');
+
+    socket.onopen = function() {
+      console.log('Koneksi WebSocket terbuka.');
+      addSystemMessage('Terhubung ke server WebSocket.');
+    };
+
+    socket.onmessage = function(event) {
+      const timestamp = new Date().toLocaleTimeString();
+      addServerMessage(`${timestamp} - ${event.data}`);
+    };
+
+    socket.onerror = function(error) {
+      console.log('Terjadi kesalahan:', error);
+      addSystemMessage('Kesalahan koneksi!');
+    };
+
+    socket.onclose = function() {
+      console.log('Koneksi WebSocket ditutup.');
+      addSystemMessage('Koneksi telah ditutup.');
+    };
+
+    document.getElementById('sendBtn').addEventListener('click', function() {
+      sendMessage();
+    });
+
+    document.getElementById('textInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    function sendMessage() {
+      const input = document.getElementById('textInput');
+      const text = input.value.trim();
+      if (text !== '') {
+        socket.send(text);
+        addSystemMessage('Pesan dikirim: ' + text);
+        input.value = '';
+      }
+    }
+
+    function addServerMessage(text) {
+      const msg = document.createElement('div');
+      msg.className = 'message server';
+      msg.textContent = text;
+      document.getElementById('chat-box').appendChild(msg);
+      scrollToBottom();
+    }
+
+    function addSystemMessage(text) {
+      const msg = document.createElement('div');
+      msg.className = 'message system';
+      msg.textContent = text;
+      document.getElementById('chat-box').appendChild(msg);
+      scrollToBottom();
+    }
+
+    function scrollToBottom() {
+      const chatBox = document.getElementById('chat-box');
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>
