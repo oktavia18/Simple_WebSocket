@@ -1,3 +1,13 @@
+# Project UTS { Semester 4 } <img src=https://i.pinimg.com/564x/fd/88/8c/fd888c43145aa84d5e3037082d470910.jpg width="130px">
+## PROFIL
+| Variable           |             Isi            |
+| -------------------|----------------------------|
+| **Nama**           |         Oktavia Rizkha Kurniawati       |
+| **NIM**            |          312310509         |
+| **Kelas**          |          TI.23.A.5         |
+| **Mata Kuliah**    |     Pemrograman Web 2     |
+| **Dosen Pengampu** | Agung  |
+
 # Simple WebSocket Server and Client
 
 ## Pendahuluan
