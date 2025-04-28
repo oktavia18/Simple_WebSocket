@@ -6,12 +6,7 @@
 | **NIM**            |          312310509         |
 | **Kelas**          |          TI.23.A.5         |
 | **Mata Kuliah**    |     Pemrograman Web 2     |
-| **Dosen Pengampu** | Agung  |
-
-# WebSocket
-
-WebSocket adalah protokol komunikasi berbasis jaringan yang memungkinkan koneksi dua arah (full-duplex) antara client dan server secara real-time.  
-Dengan WebSocket, baik client maupun server dapat saling mengirim dan menerima data kapan saja tanpa perlu membuat koneksi baru berulang-ulang, sehingga lebih efisien dibandingkan komunikasi tradisional berbasis HTTP.
+| **Dosen Pengampu** | Agung  Nugroho|
 
 ---
 
@@ -32,11 +27,6 @@ Dengan WebSocket, baik client maupun server dapat saling mengirim dan menerima d
 - [ws](https://github.com/websockets/ws) (Library WebSocket untuk Node.js)
 - HTML5 + JavaScript
 - Browser Chrome/Firefox
-
----
-
-# 🚀 Eksperimen: Membuat Server WebSocket dan Client
-Dalam eksperimen ini, kita akan membangun sebuah server WebSocket sederhana menggunakan Node.js, serta membuat halaman HTML client yang dapat terhubung dan bertukar pesan dengan server tersebut.
 
 ## Persiapan
 Pastikan sudah terpasang:
