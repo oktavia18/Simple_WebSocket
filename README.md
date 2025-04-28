@@ -49,9 +49,10 @@ Pastikan sudah terpasang:
 
 ### 1. Clone atau Buat Folder Proyek
 
+```
 mkdir simple-websocket
 cd simple-websocket
-
+```
 
 ![Screenshot 2025-04-27 210949](https://github.com/user-attachments/assets/998c4711-80f2-4f82-a4df-f27a5b3b407c)
 
@@ -59,10 +60,10 @@ cd simple-websocket
 
 ### 2. Inisialisasi Proyek dan Install Library WebSocket
 
-'''
+```
 npm init -y
 npm install ws
-'''
+```
 
 
 ![Screenshot 2025-04-27 211406](https://github.com/user-attachments/assets/54998bcb-0834-4a87-ad7c-7233b66a3ce7)
