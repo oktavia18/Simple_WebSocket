@@ -1,72 +1,41 @@
-# Simple_WebSocket
-Langkah 2: Membuat Server WebSocket
-Selanjutnya, saya membuat file server.js dengan kode berikut:
-const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 8080 });
-wss.on('connection', function connection(ws) {
-    console.log('Client terhubung!');
-    ws.send('Halo dari server WebSocket!');
-});
-console.log('Server WebSocket berjalan di ws://localhost:8080');
+# Simple WebSocket Server and Client
 
-Kode yang di Modifikasi:
+## Pendahuluan
+Dalam era digital modern, komunikasi real-time antara server dan client menjadi sangat penting, terutama untuk aplikasi seperti chat, notifikasi instan, pembaruan harga saham, dan game online.  
 
-const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 8080 });
-console.log('Server WebSocket berjalan di ws://localhost:8080');
-// Simpan riwayat percakapan per client
-const clients = new Map();
-wss.on('connection', function connection(ws) {
-  console.log('Client terhubung.');
- // Inisialisasi riwayat untuk client baru
-  clients.set(ws, []);
- // Kirim pesan pertama dari server
-  ws.send('Halo! Aku siap mengobrol denganmu! 🤖');
-  ws.on('message', function incoming(message) {
-    const clientMessage = message.toString().toLowerCase();
-    console.log('Pesan dari client:', clientMessage);
-    const history = clients.get(ws);
-    history.push({ from: 'client', text: clientMessage });
-    let reply = '';
-    // Logika membalas berdasarkan isi pesan dan riwayat
-    if (clientMessage.includes('halo')) {
-      reply = getRandomReply([
-        'Halo juga! Senang bertemu denganmu 👋',
-        'Hai! Apa kabar hari ini?',
-        'Salam kenal! 😄'
-      ]);
-    } else if (clientMessage.includes('baik') || clientMessage.includes('alhamdulillah')) {
-      reply = getRandomReply([
-        'Alhamdulillah! Semoga harimu menyenangkan ☀️',
-        'Senang mendengarnya! Mau cerita apa hari ini?'
-      ]);
-    } else if (clientMessage.includes('nama')) {
-      reply = 'Namaku ChatServer 🤖. Senang berkenalan denganmu!';
-    } else if (clientMessage.includes('kamu bisa apa')) {
-      reply = 'Aku bisa ngobrol sederhana denganmu. Mau coba? 😁';
-    } else if (clientMessage.includes('bye') || clientMessage.includes('dadah')) {
-      reply = 'Sampai jumpa lagi! 👋 Semoga harimu menyenangkan!';
-    } else {
-      // Kalau tidak dikenali, jawab berdasarkan riwayat
-      if (history.length < 5) {
-        reply = 'Ceritakan lebih banyak, aku mendengarkan... 👂';
-      } else {
-        reply = getRandomReply([
-          'Wah, menarik! Ceritakan lebih lanjut!',
-          'Hmm, bisa dijelaskan sedikit lagi?',
-          'Aku belum paham, coba ceritakan dari awal?'
-        ]);
-      }
-    }
-    ws.send(reply);
-    history.push({ from: 'server', text: reply });
-  });
-  ws.on('close', function() {
-    console.log('Client terputus.');
-    clients.delete(ws); // Bersihkan data saat client keluar
-  });
-});
-// Fungsi membalas secara random dari beberapa pilihan
-function getRandomReply(replies) {
-  return replies[Math.floor(Math.random() * replies.length)];
-}
+WebSocket adalah protokol yang memungkinkan komunikasi dua arah (full-duplex) melalui koneksi TCP tunggal yang persisten. Ini berbeda dari HTTP biasa yang berbasis request-response. Dengan WebSocket, data dapat mengalir bebas antara server dan client tanpa membuka koneksi baru setiap saat.
+
+Proyek ini adalah eksperimen sederhana membangun server WebSocket menggunakan Node.js dan client HTML yang dapat bertukar pesan secara real-time.
+
+---
+
+## Fitur
+- Koneksi WebSocket persisten.
+- Komunikasi dua arah (server ↔ client).
+- Pesan real-time tanpa reload halaman.
+- Indikator status koneksi.
+
+---
+
+## Teknologi yang Digunakan
+- Node.js
+- [ws](https://github.com/websockets/ws) (Library WebSocket untuk Node.js)
+- HTML5 + JavaScript
+- Browser Chrome/Firefox
+
+---
+
+## Persiapan
+Pastikan sudah terpasang:
+- Node.js (cek dengan `node -v`)
+- Editor teks seperti Visual Studio Code
+- Browser modern
+
+---
+
+## Instalasi dan Menjalankan
+
+### 1. Clone atau Buat Folder Proyek
+```bash
+mkdir simple-websocket
+cd simple-websocket
