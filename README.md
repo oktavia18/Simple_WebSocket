@@ -1,4 +1,4 @@
-# Project UTS { Semester 4 } <img src=https://i.pinimg.com/564x/fd/88/8c/fd888c43145aa84d5e3037082d470910.jpg width="130px">
+# Project UTS { Semester 4 } 
 ## PROFIL
 | Variable           |             Isi            |
 | -------------------|----------------------------|
@@ -14,7 +14,7 @@
 - **Bukti Cek Plagiasi**: [Drive - Google](https://drive.google.com/drive/folders/17NdHr_M2L-qoGQYBXZCDWgJMSncaRWJd)
 ---
 
-# 🚀 Eksperimen: Membuat Server WebSocket dan Client
+# 🚀  Membuat ChatServer dan Client dengan WebSocket 
 Dalam eksperimen ini, kita akan membangun sebuah server WebSocket sederhana menggunakan Node.js, serta membuat halaman HTML client yang dapat terhubung dan bertukar pesan dengan server tersebut.
 
 ---
