@@ -90,7 +90,9 @@ Client HTML ini menyediakan:
 ### Langkah 4: Menjalankan Server WebSocket
 Buka Teminal, ketik :
 
+```
 node server.js
+```
 
 Kalau berhasil, terminal akan menampilkan:
 Server WebSocket berjalan di ws://localhost:8080
@@ -133,3 +135,9 @@ Dari eksperimen ini, dapat disimpulkan bahwa:
 3. Mudah Digunakan: Library ws di Node.js mempermudah pembuatan server WebSocket.
 
 WebSocket sangat cocok untuk aplikasi yang membutuhkan komunikasi waktu nyata seperti chat atau notifikasi langsung.
+
+## 🔍 Referensi
+
+- [MDN Web Docs.(2023). WebSockets API.](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API?source=post_page68f44639cf68) 
+- [WebSocket.org. (2022). About WebSocket.](https://websocket.org/guides/websocket-protocol)
+- [The WebSocket Protocol Internet Engineering Task Force (IETF).](https://datatracker.ietf.org/doc/html/rfc6455)
