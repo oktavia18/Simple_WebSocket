@@ -6,8 +6,12 @@
 | **NIM**            |          312310509         |
 | **Kelas**          |          TI.23.A.5         |
 | **Mata Kuliah**    |     Pemrograman Web 2     |
-| **Dosen Pengampu** | Agung  Nugroho|
+| **Dosen Pengampu** | Agung Nugroho, S.Kom., M.Kom.|
 
+## Link Project
+- **Repository GitHub**: [UTSPemrogramanWeb2 - GitHub](https://github.com/oktavia18/UTSPemrogramanWeb2.git)
+- **Artikel Medium**: [WebSocket - Medium](https://medium.com/@viaokta11223/koneksi-real-time-tanpa-ribet-membangun-server-dan-client-websocket-dengan-mudah-68f44639cf68)
+- **Bukti Cek Plagiasi**: [Drive - Google](https://drive.google.com/drive/folders/17NdHr_M2L-qoGQYBXZCDWgJMSncaRWJd)
 ---
 
 # 🚀 Eksperimen: Membuat Server WebSocket dan Client
@@ -64,36 +68,24 @@ npm install ws
 
 ## 🛠 Langkah 2: Membuat Server WebSocket
 
-Selanjutnya, buat file `server.js` dengan kode berikut:
+Selanjutnya, buat file `server.js`
 
-```
-const WebSocket = require('ws');
+Server ini akan:
+- Mendengarkan koneksi WebSocket pada port 8080
+- Mengirim pesan “Halo dari server WebSocket!” ke setiap client yang terhubung
+- Menerima pesan dari client dan mengirimkannya kembali dengan prefix
+- Mencatat ketika client terputus
 
-// Membuat server WebSocket pada port 8080
-const wss = new WebSocket.Server({ port: 8080 });
+### Langkah 3: Membuat Client HTML
 
-wss.on('connection', function connection(ws) {
-  console.log('Client connected');
+Selanjutnya, saya membuat file `Index.html`
 
-  // Kirim pesan ke client baru
-  ws.send('Halo dari server WebSocket!');
+Client HTML ini menyediakan:
+- Antarmuka pengguna sederhana untuk terhubung ke server WebSocket
+- Kotak pesan untuk menampilkan pesan yang dikirim dan diterima
+- Formulir untuk mengirim pesan ke server
+- Indikator status koneksi
 
-  // Menerima pesan dari client
-  ws.on('message', function incoming(message) {
-    console.log('Received: %s', message);
-    ws.send(`Server received: ${message}`);
-  });
-
-  // Menangani saat client disconnect
-  ws.on('close', function close() {
-    console.log('Client disconnected');
-  });
-});
-
-```
-
-
-console.log('WebSocket server running on ws://localhost:8080');
 
 ### Langkah 4: Menjalankan Server WebSocket
 Buka Teminal, ketik :
@@ -106,7 +98,7 @@ Server WebSocket berjalan di ws://localhost:8080
 ![Screenshot 2025-04-26 234339](https://github.com/user-attachments/assets/3117c860-0915-4b42-9622-49f558ff9c34)
 
 
-#### Langkah 5: Menjalankan Server WebSocket
+#### Langkah 5: Membuka Server WebSocket pada Browser
 1. Buka index.html di browser (bisa klik dua kali file-nya atau pakai ekstensi Live Server di VSCode).
 2. Begitu halaman terbuka, browser akan connect ke server dan otomatis menerima pesan : “Halo dari server WebSocket!”
 
